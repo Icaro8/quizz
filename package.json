@@ -1,0 +1,28 @@
+{
+  "name": "nextapp",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@unform/core": "^2.1.6",
+    "@unform/web": "^2.1.6",
+    "axios": "^0.25.0",
+    "jwt-decode": "^3.1.2",
+    "next": "12.0.8",
+    "nookies": "^2.5.2",
+    "package.json": "^2.0.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-icons": "^4.3.1",
+    "react-toastify": "^8.1.1",
+    "sass": "^1.49.0"
+  },
+  "devDependencies": {
+    "eslint": "8.7.0",
+    "eslint-config-next": "12.0.8"
+  }
+}

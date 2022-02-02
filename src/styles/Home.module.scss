@@ -1,0 +1,239 @@
+.ContainerContent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--gray-100);
+  color: var(--gray-900);
+  .ContainertForm {
+    width: 30%;
+    height: 45%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    box-shadow: 0 0 6px 2px var(--gray-300);
+    border-radius: 10px;
+    background-color: var(--white);
+    position: relative;
+    h2 {
+      margin-top: 20px;
+    }
+    .classNameTopSvgUSer {
+      position: absolute;
+      top: -30px;
+      background-color: var(--white);
+      padding: 15px;
+      border-radius: 50%;
+      box-shadow: 0 0 6px 2px var(--gray-300);
+      svg {
+        width: 45px;
+        height: 45px;
+        color: var(--gray-800);
+      }
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-top: -20px;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+
+      input {
+        width: 230px;
+        padding: 8px;
+
+        border-radius: 5px;
+        border: none;
+
+        outline-color: var(--blue-500);
+        background-color: var(--gray-100);
+
+        margin: 5px 0;
+
+        &:placeholder {
+          color: var(--gray-800);
+        }
+      }
+
+      div {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        svg {
+          width: 20px;
+          height: 20px;
+          cursor: pointer;
+        }
+      }
+      div {
+        display: flex;
+        justify-content: right;
+        button {
+          margin-top: 20px;
+          border: none;
+          padding: 8px;
+          border-radius: 10px;
+          font-weight: bold;
+          background-color: var(--blue-600);
+          color: var(--white);
+          letter-spacing: 1px;
+          &:hover {
+            background-color: var(--gray-100);
+            color: var(--blue-600);
+            box-shadow: 0 0 0 2px var(--blue-600);
+            transition: linear 0.2s;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 912px) {
+  .ContainerContent {
+    width: 100%;
+    .ContainertForm {
+      width: 70%;
+      height: 30%;
+      .classNameTopSvgUSer {
+        top: -40px;
+        svg {
+          width: 60px;
+          height: 60px;
+        }
+      }
+      main {
+        input {
+          width: 450px;
+          height: 50px;
+        }
+        div {
+          button {
+            width: 150px;
+            height: 40px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .ContainerContent {
+    width: 100%;
+    .ContainertForm {
+      width: 70%;
+      height: 45%;
+      .classNameTopSvgUSer {
+        top: -40px;
+        svg {
+          width: 60px;
+          height: 60px;
+        }
+      }
+      main {
+        input {
+          width: 250px;
+          height: 50px;
+        }
+        div {
+          button {
+            width: 100px;
+            height: 30px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .ContainerContent {
+    width: 100%;
+    .ContainertForm {
+      width: 90%;
+      height: 40%;
+      .classNameTopSvgUSer {
+        top: -40px;
+        svg {
+          width: 60px;
+          height: 60px;
+        }
+      }
+      main {
+        input {
+          width: 250px;
+          height: 40px;
+        }
+        div {
+          button {
+            width: 100px;
+            height: 30px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 393px) {
+  .ContainerContent {
+    width: 100%;
+    .ContainertForm {
+      width: 90%;
+      height: 40%;
+      .classNameTopSvgUSer {
+        top: -40px;
+        svg {
+          width: 60px;
+          height: 60px;
+        }
+      }
+      main {
+        input {
+          width: 250px;
+          height: 40px;
+        }
+        div {
+          button {
+            width: 100px;
+            height: 30px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 280px) {
+  .ContainerContent {
+    width: 100%;
+    .ContainertForm {
+      width: 90%;
+      height: 45%;
+      .classNameTopSvgUSer {
+        top: -40px;
+        svg {
+          width: 60px;
+          height: 60px;
+        }
+      }
+      main {
+        input {
+          width: 200px;
+          height: 30px;
+        }
+        div {
+          button {
+            width: 100px;
+            height: 30px;
+          }
+        }
+      }
+    }
+  }
+}
