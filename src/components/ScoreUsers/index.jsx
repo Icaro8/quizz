@@ -4,7 +4,7 @@ import { AiFillStar } from "react-icons/ai";
 
 import styles from "./style.module.scss";
 
-export function TableScore() {
+export function TableScore({ name, points, situation }) {
   return (
     <div className={styles.container}>
       <main>
@@ -18,31 +18,22 @@ export function TableScore() {
           </thead>
           <tbody>
             <tr>
-              <td>Icaro Vieira</td>
-              <td>5</td>
               <td>
-                <AiFillStar />
+                <strong>{name}</strong>
               </td>
-            </tr>
-            <tr>
-              <td>Icaro Vieira</td>
-              <td>5</td>
               <td>
-                <AiFillStar />
+                <strong>{points}</strong>
               </td>
-            </tr>
-            <tr>
-              <td>Icaro Vieira</td>
-              <td>5</td>
               <td>
-                <AiFillStar />
-              </td>
-            </tr>
-            <tr>
-              <td>Icaro Vieira</td>
-              <td>5</td>
-              <td>
-                <AiFillStar />
+                {situation < 4 ? (
+                  <AiFillStar color="#ff3d00" />
+                ) : situation < 7 ? (
+                  <AiFillStar color="#ffea00" />
+                ) : situation >= 7 ? (
+                  <AiFillStar color="#00e676" />
+                ) : (
+                  ""
+                )}
               </td>
             </tr>
           </tbody>
@@ -51,3 +42,10 @@ export function TableScore() {
     </div>
   );
 }
+/*
+   <td>Icaro Vieira</td>
+              <td>5</td>
+              <td>
+                <AiFillStar />
+              </td>
+*/

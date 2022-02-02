@@ -25,6 +25,10 @@
         & + td {
           border-left: 1px solid var(--gray-50);
         }
+        svg {
+          width: 20px;
+          height: 20px;
+        }
       }
       tr:nth-child(odd) {
         background-color: var(--green-200);

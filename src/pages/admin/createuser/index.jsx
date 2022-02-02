@@ -29,7 +29,7 @@ export default function CreateUser() {
     if (inputType === "text") setInputType("password");
   }
   async function handleSubmit(data) {
-    const response = await api.post("user", data);
+    const response = await api.post("users", data);
     console.log(response);
     if (response.status === 201) toast.success("usuario criado com sucesso");
 

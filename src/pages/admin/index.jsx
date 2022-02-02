@@ -22,7 +22,7 @@ export default function ScorePage() {
         </div>
         <div className={style.table}>
           <h2>Score Players</h2>
-          <TableScore />
+          <TableScore name="Icaro" points="6" situation={8} />
         </div>
       </div>
     </div>

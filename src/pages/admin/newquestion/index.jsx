@@ -5,25 +5,35 @@ import { Form } from "@unform/web";
 import { Input } from "../../../components/InputComponent";
 import { Header } from "../../../components/Header";
 import { LeftBar } from "../components/LeftBar";
+import { api } from "../../api/hello";
 
 import styles from "./style.module.scss";
 
 export default function CreateNewQuestion() {
   const formRef = useRef();
 
-  function hendleSubmit({ text, answer }) {
-    const textQuestion = { text: text };
-    const answers = {
-      answer: answer.map(
-        (question, index) =>
-          (answer[index] = {
-            iseCorrect: index === 3 ? true : false,
-            text: question.text,
-          })
-      ),
+  async function hendleSubmit({
+    title,
+    categoria,
+    alternativa_a,
+    alternativa_b,
+    alternativa_c,
+    alternativa_d,
+    resposta_title,
+  }) {
+    const question = {
+      title: title,
+      categoria: categoria,
+      alternativa_a: alternativa_a,
+      alternativa_b: alternativa_b,
+      alternativa_c: alternativa_c,
+      alternativa_d: alternativa_d,
+      resposta_title: resposta_title,
     };
-    console.log(answers);
-    console.log(textQuestion);
+    question.resposta_title = alternativa_d;
+
+    const response = await api.post("users/pergunta", question);
+    console.log(question);
   }
   return (
     <div className={styles.container}>
@@ -39,25 +49,30 @@ export default function CreateNewQuestion() {
           <h1>Criar novos Quizz</h1>
           <div className={styles.text}>
             <h3>Enunciado da questão</h3>
-            <Input name="text" type="text" className={styles.input} />
+            <Input name="title" type="text" className={styles.input} />
+          </div>
+          <div className={styles.text}>
+            <strong>Categoria</strong>
+            <Input name="categoria" type="text" className={styles.input} />
           </div>
           <div>
             <div className={styles.inputGroup}>
               <strong>Alternativa</strong>
-              <Input name="answer[0].text" type="text" />
+              <Input name="alternativa_a" type="text" />
             </div>
             <div className={styles.inputGroup}>
               <strong>Alternativa</strong>
-              <Input name="answer[1].text" type="text" />
+              <Input name="alternativa_b" type="text" />
             </div>
             <div className={styles.inputGroup}>
               <strong>Alternativa</strong>
-              <Input name="answer[2].text" type="text" />
+              <Input name="alternativa_c" type="text" />
             </div>
             <div className={styles.inputGroup}>
-              <strong>Resposta correta</strong>
-              <Input name="answer[3].text" type="text" />
+              <strong>Resposta</strong>
+              <Input name="alternativa_d" type="text" />
             </div>
+
             <button type="submit">submit</button>
           </div>
         </Form>

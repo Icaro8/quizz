@@ -1,11 +1,15 @@
 import Link from "next/link";
 import React from "react";
+import { useRouter } from "next/router";
 
 import { FaFantasyFlightGames } from "react-icons/fa";
 
 import styles from "./style.module.scss";
 
 export function Header() {
+  const router = useRouter();
+  const pathname = router.pathname;
+  console.log(pathname);
   return (
     <header className={styles.headerContainer}>
       <div>
@@ -19,13 +23,13 @@ export function Header() {
       <nav>
         <ul>
           <li>
-            <Link href="/'">
+            <Link href="/quizz">
               <a>Quiz</a>
             </Link>
           </li>
           <li>
-            <Link href="/'">
-              <a>Menu</a>
+            <Link href="/home">
+              <a className={pathname === "/home" ? styles.active : ""}>Menu</a>
             </Link>
           </li>
         </ul>

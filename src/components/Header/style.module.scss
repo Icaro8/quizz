@@ -1,5 +1,4 @@
 .headerContainer {
-  grid-area: H;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,6 +15,9 @@
       width: 45px;
       height: 45px;
     }
+    h1 {
+      color: var(--gray-600);
+    }
   }
 
   nav {
@@ -24,6 +26,7 @@
       margin-right: 20px;
       li {
         display: inline-block;
+
         a {
           padding: 5px;
           color: var(--gray-600);
@@ -31,6 +34,10 @@
             text-decoration: underline;
             color: var(--black);
           }
+        }
+        .active {
+          text-decoration: underline;
+          color: var(--gray-900);
         }
       }
     }

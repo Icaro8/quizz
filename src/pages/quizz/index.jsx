@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { ToastContainer, toast } from "react-toastify";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+import { parseCookies } from "nookies";
+import { useRouter } from "next/router";
 
 import { Header } from "../../components/Header";
 import { TitleQuest } from "../../components/TitleQuestion";
@@ -11,36 +13,42 @@ import styles from "./style.module.scss";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function QuizUser({ list: questions }) {
+  const router = useRouter();
   const [question, setQuestion] = useState([]);
   const [title, setTitle] = useState([]);
   const [runtimeFinish, setHuntimeFinsih] = useState(true);
 
   useEffect(
     () => {
-      async function pegarTitulo() {
-        const data = await questions;
-        setTitle(data);
-        setQuestion(data.answers);
+      const { ["quizz.user"]: user } = parseCookies();
+      if (!user) {
+        router.push("/");
+        toast.error("Desculpe não conseguimos achar o usuario logado 😴");
       }
-      pegarTitulo();
+      // async function pegarTitulo() {
+      //   const data = await questions;
+      //   setTitle(data);
+      //   setQuestion(data.answers);
+      // }
+      // pegarTitulo();
     },
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 
-  async function handleClick(idResposta) {
-    const questionId = questions.questionId;
+  // async function handleClick(idResposta) {
+  //   const questionId = questions.questionId;
 
-    const response = await api.post("questions", {
-      questionId: questionId,
-      answerId: idResposta,
-    });
-    console.log(response);
-    setQuestion(await response.data.answers);
-    setTitle(response.data);
-    console.log(title, question);
-  }
+  //   const response = await api.post("questions", {
+  //     questionId: questionId,
+  //     answerId: idResposta,
+  //   });
+  //   console.log(response);
+  //   setQuestion(await response.data.answers);
+  //   setTitle(response.data);
+  //   console.log(title, question);
+  // }
   return (
     <div className={styles.layout}>
       <Head>
@@ -50,7 +58,7 @@ export default function QuizUser({ list: questions }) {
       <div className={styles.Container}>
         <div className={styles.card}>
           <h1>{/* Question {countQuestion + 1} de {question.length} */}</h1>
-          {runtimeFinish ? (
+          {/* {runtimeFinish ? (
             <div className={styles.contentCard}>
               <div className={styles.title}>
                 <TitleQuest title={title.text} />
@@ -72,7 +80,7 @@ export default function QuizUser({ list: questions }) {
                 <p>Go back</p> <AiOutlineArrowLeft />
               </button>
             </div>
-          )}
+          )} */}
         </div>
       </div>
       <ToastContainer />
