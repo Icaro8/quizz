@@ -2,9 +2,14 @@ import { useState, useRef, useEffect } from "react";
 import Head from "next/head";
 import { Form } from "@unform/web";
 import { useRouter } from "next/router";
-
 import { toast } from "react-toastify";
 import { AiFillEye, AiFillEyeInvisible, AiOutlineUser } from "react-icons/ai";
+import * as yup from "yup";
+
+const schema = yup.object().shape({
+  email: yup.string().min(5).required(),
+  password: yup.string().min(5).required(),
+});
 
 import styles from "../styles/Home.module.scss";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,7 +17,7 @@ import { api } from "./api/hello";
 import { Input } from "../components/InputComponent";
 import { useLogin } from "../contexts/useLoginRegister";
 export default function Home() {
-  const { handleCookies } = useLogin();
+  const { handleSetCookies } = useLogin();
   const router = useRouter();
   const formRef = useRef();
   const [inputType, setInputType] = useState("password");
@@ -24,16 +29,19 @@ export default function Home() {
   }
 
   async function handleSubmit(user, { reset }) {
-    const response = await api.post("users/authenticate", user);
-    console.log(response);
-    if (response.status === 200) {
-      handleCookies(response.data);
-      router.push("/home");
-    }
-    if (response.status >= 400) {
-      toast.error("Tivemos um erro verifque seu usuario ou senha");
-    }
-    reset();
+    schema.isValid(user).then((isValid) => {
+      async function validateUser() {
+        const response = await api.post("users/authenticate", user);
+        handleSetCookies(response.data.token);
+        if (response.status >= 400) {
+          toast.error("Tivemos um erro verifque seu usuario ou senha");
+        }
+        if (response.data?.token) router.push("/home");
+        reset();
+      }
+      if (isValid) validateUser();
+      else toast.error("Por favor preencha os campos corretamente");
+    });
   }
 
   return (

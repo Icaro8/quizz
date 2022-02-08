@@ -3,6 +3,7 @@ import Head from "next/head";
 import { parseCookies } from "nookies";
 import jwt_decode from "jwt-decode";
 
+import { api } from "../../pages/api/hello";
 import { LeftBar } from "./components/LeftBar";
 import { Header } from "../../components/Header";
 import { TableScore } from "../../components/ScoreUsers";
@@ -29,10 +30,37 @@ export default function ScorePage() {
   );
 }
 
-export function getServerSideProps(ctx) {
-  const cookies = parseCookies(ctx);
-  // const parse = jwt_decode(cookies);
-  if (cookies.admin) {
+export async function getServerSideProps(ctx) {
+  const { ["quizz.user"]: cookie } = parseCookies(ctx);
+
+  if (!cookie) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+      props: {},
+    };
+  }
+
+  const response = await fetch("http://localhost:3333/user/isadmin", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${cookie}`,
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true,
+    },
+  });
+  const convert = await response.json();
+
+  if (convert.data === false || response.status >= 400) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+      props: {},
+    };
   }
   return {
     props: {},

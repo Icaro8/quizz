@@ -7,18 +7,14 @@ const authContext = createContext();
 export function AuthContextProvider({ children }) {
   const [user, setUser] = useState();
 
-  async function handleCookies(cookie) {
-    setCookie(null, "quizz.user", cookie.token, {
+  async function handleSetCookies(cookie) {
+    setCookie(null, "quizz.user", cookie, {
       maxAge: 60 * 60 * 24,
     });
-
-    const { ["quizz.user"]: user } = parseCookies();
-    const decode = jwt_decode(user);
-    console.log(decode);
   }
 
   return (
-    <authContext.Provider value={{ user, setUser, handleCookies }}>
+    <authContext.Provider value={{ user, setUser, handleSetCookies }}>
       {children}
     </authContext.Provider>
   );

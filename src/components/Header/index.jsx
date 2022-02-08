@@ -6,7 +6,7 @@ import { FaFantasyFlightGames } from "react-icons/fa";
 
 import styles from "./style.module.scss";
 
-export function Header() {
+export function Header({ user }) {
   const router = useRouter();
   const pathname = router.pathname;
   console.log(pathname);
@@ -30,6 +30,11 @@ export function Header() {
           <li>
             <Link href="/home">
               <a className={pathname === "/home" ? styles.active : ""}>Menu</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/admin">
+              <a>{user ? "Painel de controle" : ""}</a>
             </Link>
           </li>
         </ul>
